@@ -1,5 +1,4 @@
 <?php
-
     ini_set("display_errors", 1);
 	error_reporting(E_ALL);
 
@@ -8,12 +7,7 @@
     $requestClass = new Request();
 
     if( $requestClass->isPost() ) {
-//
-//        $requestClass->required('title');
-//        $requestClass->required('content');
-//        $requestClass->min('title', 5);
-//        $requestClass->max('title', 20);
-//        $requestClass->min('content', 20);
+
            $errors = $requestClass->getErrors();
 
             if (count($errors)==0){
@@ -43,23 +37,14 @@
 
               $newsClass = new News();
 
-             // $isDublicate=$cityClass->idDublicate($_POST['id'],trim($_POST['city']));
-
               $status = 'error';
               $message="";
 
-//              if(!$isDublicate)
-//              {
                 $result = $newsClass->update(['id'=>trim($_POST['id']),'name'=>trim($_POST['news'])]);
                 $status="ok";
-//              }
-//              else {
-//                $message="есть уже дубликат";
+
                     echo json_encode(['status' =>$status,'message'=>$message]);
               }
-
-
-
         }
         else{
 
